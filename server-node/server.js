@@ -162,8 +162,13 @@ app.put('/api/rows/:rowIndex', async (req, res) => {
     });
 
     if (!pyRes.ok) {
-      const errData = await pyRes.json();
-      throw new Error(errData.detail || 'Python backend write failed');
+      const errText = await pyRes.text();
+      let errMsg = `Python service error (HTTP ${pyRes.status})`;
+      try {
+        const errData = JSON.parse(errText);
+        errMsg = errData.detail || errData.error || errMsg;
+      } catch (_) {}
+      throw new Error(errMsg);
     }
 
     const result = await pyRes.json();

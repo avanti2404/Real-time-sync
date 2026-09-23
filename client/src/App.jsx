@@ -94,8 +94,13 @@ export default function App() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit changes');
+        const errorText = await response.text();
+        let msg = `Server error (HTTP ${response.status})`;
+        try {
+          const errorData = JSON.parse(errorText);
+          msg = errorData.error || errorData.detail || msg;
+        } catch (_) {}
+        throw new Error(msg);
       }
 
       const result = await response.json();
