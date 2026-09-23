@@ -44,7 +44,6 @@ export default function App() {
     }
 
     function onSheetUpdated(data) {
-      console.log('⚡ [Real-Time Update Received]:', data);
       if (data.rows) {
         setRows(data.rows);
         setLastSyncTime(new Date().toLocaleTimeString());
