@@ -70,9 +70,14 @@ class SheetsService:
                 rows = []
                 # First row is header (A, B, C)
                 for index, row in enumerate(values[1:], start=1):
-                    colA = row[0] if len(row) > 0 else ""
-                    colB = row[1] if len(row) > 1 else ""
-                    colC = row[2] if len(row) > 2 else ""
+                    colA = str(row[0]).strip() if len(row) > 0 and row[0] is not None else ""
+                    colB = str(row[1]).strip() if len(row) > 1 and row[1] is not None else ""
+                    colC = str(row[2]).strip() if len(row) > 2 and row[2] is not None else ""
+                    
+                    # Ignore completely empty rows
+                    if not colA and not colB and not colC:
+                        continue
+                        
                     rows.append({
                         "id": index,
                         "columnA": colA,

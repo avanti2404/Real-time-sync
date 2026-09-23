@@ -162,12 +162,12 @@ export default function App() {
           </thead>
           <tbody>
             {rows.length > 0 ? (
-              rows.map((row) => (
+              rows.map((row, index) => (
                 <tr
                   key={row.id}
                   className={flashingRowId ? 'row-flash' : ''}
                 >
-                  <td style={{ fontWeight: '600', color: '#64748b' }}>#{row.id}</td>
+                  <td style={{ fontWeight: '600', color: '#64748b' }}>#{index + 1}</td>
                   <td style={{ color: '#f8fafc', fontWeight: '500' }}>{row.columnA}</td>
                   <td>{row.columnB}</td>
                   <td>
