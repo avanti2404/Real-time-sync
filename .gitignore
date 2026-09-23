@@ -1,0 +1,45 @@
+# Environment Variables & Credentials (STRICT PRIVATE SECRETS)
+.env
+.env.local
+.env.development
+.env.production
+*.env
+!*.env.example
+
+# Google Cloud Service Account Keys
+service_account.json
+**/service_account.json
+*.json.key
+
+# Node.js & Dependencies
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build Outputs & Bundles
+dist/
+**/dist/
+build/
+**/build/
+
+# Python Artifacts & Environments
+__pycache__/
+/**/__pycache__/
+*.py[cod]
+*$py.class
+venv/
+**/venv/
+.venv/
+**/.venv/
+.pytest_cache/
+
+# IDE & OS Generated Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp
+*.log
