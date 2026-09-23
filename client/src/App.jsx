@@ -3,6 +3,8 @@ import { socket } from './services/socket';
 import { Edit2, RefreshCw, CheckCircle2, AlertCircle, X } from 'lucide-react';
 import './App.css';
 
+const API_BASE_URL = import.meta.env.VITE_SOCKET_URL || '';
+
 export default function App() {
   const [rows, setRows] = useState([]);
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -19,7 +21,7 @@ export default function App() {
 
   useEffect(() => {
     // Initial fetch fallback over HTTP
-    fetch('/api/data')
+    fetch(`${API_BASE_URL}/api/data`)
       .then((res) => res.json())
       .then((data) => {
         if (data.rows) setRows(data.rows);
@@ -86,7 +88,7 @@ export default function App() {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`/api/rows/${editingRow.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/rows/${editingRow.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formValues)
